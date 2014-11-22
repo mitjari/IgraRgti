@@ -22,6 +22,12 @@ var texturesLoaded = false;
 // Tipkovnica
 var currentlyPressedKeys = {};
 
+//Miska
+var lastMouseX= null;
+var lastMouseY= null;
+var normalMouse=true;
+var mouseEvent=null;
+
 // Lokacija in hitrost
 var pitch = 0;
 var pitchRate = 0;
@@ -87,8 +93,11 @@ function start()
 		initTextures();
 		loadWorld();
 		
+		//Tipkovnica
 		document.onkeydown = handleKeyDown;
 		document.onkeyup = handleKeyUp;
+		//Miska
+		canvas.onmousedown= initMouse;
 
 		// Zanka
 		setInterval(function() {
@@ -96,6 +105,7 @@ function start()
 			{
 				requestAnimationFrame(animate);
 				handleKeys();
+				premakni();
 				drawScene();
 			}
 		}, 15);
