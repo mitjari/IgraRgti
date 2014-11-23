@@ -81,8 +81,8 @@ function initGL(canvas)
 
 function goFullScreen()
 {
-	canvas.style.width="1680px";
-	canvas.style.heigth="1050px";
+	canvas.style.width= screen.width;
+	canvas.style.heigth= screen.height;
 	
 	//Zahtevaj celotni zaslon
 	if (canvas.requestFullscreen) canvas.requestFullscreen();
