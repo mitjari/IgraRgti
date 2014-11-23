@@ -35,13 +35,20 @@ function handleKeys()
 function initMouse(event)
 {	
 	canvas.requestPointerLock = canvas.requestPointerLock ||canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
+	if( !canvas.requestPointerLock )
+	{
+		alert("Napaka! Ne morem zakleniti nmiske!");
+		return false;
+	}
+	
 	canvas.requestPointerLock();
 	
 	document.addEventListener('mousemove', handleMouse, false);
-	
 	document.addEventListener('pointerlockchange', releaseCursor, false);
 	document.addEventListener('mozpointerlockchange', releaseCursor, false);
 	document.addEventListener('webkitpointerlockchange', releaseCursor, false);
+	
+	return true;
 }
 
 

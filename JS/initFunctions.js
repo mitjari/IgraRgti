@@ -89,17 +89,24 @@ function goFullScreen()
 	else if (canvas.msRequestFullscreen) canvas.msRequestFullscreen();
 	else if (canvas.mozRequestFullScreen) canvas.mozRequestFullScreen();
 	else if (canvas.webkitRequestFullscreen) canvas.webkitRequestFullscreen();
-	
-	//pri izhodu iz celega zaslona klici funkcijo disableFullScreen
+	else
+	{
+		alert("Napaka! Ne morem v celozaslonski nacin!");
+		return false;
+	}
+	//Registreiraj dogodek za izhod iz celefa zaslona -> disableDullScreen
 	document.addEventListener('fullscreenchange', disableFullScreen, false);
 	document.addEventListener('mozfullscreenchange', disableFullScreen, false);
 	document.addEventListener('webkitfullscreenchange', disableFullScreen, false);
+	
+	return true;
 }
 
 //Izvede ob izhodu iz celega zaslona
 function disableFullScreen()
 {
-	if (window.screenTop || window.screenY) location.reload();
+	fullScreen= !fullScreen;
+	if (!fullScreen) location.reload();
 }
 
 function start()
@@ -107,8 +114,14 @@ function start()
 	canvas = document.getElementById("glcanvas");
 	canvas.removeEventListener("click", start);
 	
-	goFullScreen();
-	initMouse();
+	var fsI= goFullScreen();
+	var moI= initMouse();
+	
+	if(!fsI || !moI)
+	{
+		console.log("Napaka pri zagonu igre! Izhod...");
+		return;
+	}
 	
 	gl = initGL(canvas);
 
