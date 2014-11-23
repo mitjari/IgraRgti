@@ -6,7 +6,7 @@
 
 canvas
 {
-	display: inline;
+	display: inline; width:500px;
 	border: 1px solid black;
 }
 
@@ -22,4 +22,9 @@ h1
 	left:150px;
 	font-size:2em;
 	color: white;
+}
+
+p
+{
+	color:red; text-align: center;
 }

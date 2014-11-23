@@ -4,6 +4,8 @@ var canvas;
 var gl;
 var shaderProgram;
 
+var fullScreen= false;
+
 // Buffers
 var worldVertexPositionBuffer = null;
 var worldVertexTextureCoordBuffer = null;
@@ -37,6 +39,7 @@ var xPosition = 0;
 var yPosition = 0.4;
 var zPosition = 0;
 var speed = 0;
+var strafingSpeed= 0;
 
 var joggingAngle = 0;
 
@@ -76,10 +79,37 @@ function initGL(canvas)
   return gl;
 }
 
+function goFullScreen()
+{
+	canvas.style.width="1680px";
+	canvas.style.heigth="1050px";
+	
+	//Zahtevaj celotni zaslon
+	if (canvas.requestFullscreen) canvas.requestFullscreen();
+	else if (canvas.msRequestFullscreen) canvas.msRequestFullscreen();
+	else if (canvas.mozRequestFullScreen) canvas.mozRequestFullScreen();
+	else if (canvas.webkitRequestFullscreen) canvas.webkitRequestFullscreen();
+	
+	//pri izhodu iz celega zaslona klici funkcijo disableFullScreen
+	document.addEventListener('fullscreenchange', disableFullScreen, false);
+	document.addEventListener('mozfullscreenchange', disableFullScreen, false);
+	document.addEventListener('webkitfullscreenchange', disableFullScreen, false);
+}
+
+//Izvede ob izhodu iz celega zaslona
+function disableFullScreen()
+{
+	if (window.screenTop || window.screenY) location.reload();
+}
+
 function start()
 {
 	canvas = document.getElementById("glcanvas");
-
+	canvas.removeEventListener("click", start);
+	
+	goFullScreen();
+	initMouse();
+	
 	gl = initGL(canvas);
 
 	if (gl)
@@ -96,8 +126,6 @@ function start()
 		//Tipkovnica
 		document.onkeydown = handleKeyDown;
 		document.onkeyup = handleKeyUp;
-		//Miska
-		canvas.onmousedown= initMouse;
 
 		// Zanka
 		setInterval(function() {
