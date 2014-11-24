@@ -40,6 +40,7 @@ var yPosition = 0.4;
 var zPosition = 0;
 var speed = 0;
 var strafingSpeed= 0;
+var gravity = 0.098
 
 var joggingAngle = 0;
 
