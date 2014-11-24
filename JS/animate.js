@@ -14,9 +14,9 @@ function animate()
 				strafingSpeed	= strafingSpeed/1.5;
 			}
 			
-			xPosPrevious=xPosition;
-			yPosPrevious=yPosition;
-			zPosPrevious=zPosition;
+			var xPosPrevious=xPosition;
+			var yPosPrevious=yPosition;
+			var zPosPrevious=zPosition;
 			
 			xPosition -= Math.sin(degToRad(yaw)) * speed * elapsed;
 			zPosition -= Math.cos(degToRad(yaw)) * speed * elapsed;
