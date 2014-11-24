@@ -5,6 +5,7 @@ var gl;
 var shaderProgram;
 
 var fullScreen= false;
+var cameraHeigth= 0;
 
 // Buffers
 var worldVertexPositionBuffer = null;
@@ -33,11 +34,11 @@ var mouseEvent=null;
 // Lokacija in hitrost
 var pitch = 0;
 var pitchRate = 0;
-var yaw = 0;
+var yaw = 200;
 var yawRate = 0;
-var xPosition = 0;
+var xPosition = 1;
 var yPosition = 0.4;
-var zPosition = 0;
+var zPosition = 1;
 var speed = 0;
 var strafingSpeed= 0;
 var gravity = 0.098
