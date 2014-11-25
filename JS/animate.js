@@ -30,6 +30,8 @@ function animate()
 				if(cameraHeigth>0.4){
 					cameraHeigth -= gravity;
 					yPosition -= gravity;
+				}else{
+					yPosition =  Math.sin(degToRad(joggingAngle)) / 20 + cameraHeigth;
 				}
 			}else{
 				yPosition = Math.sin(degToRad(joggingAngle)) / 20 + cameraHeigth;

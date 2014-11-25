@@ -65,7 +65,7 @@ function drawScene()
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLES, 12, 6);
 	
-	//Izrisi glavne steene
+	//Izrisi glavne stene
 	gl.bindTexture(gl.TEXTURE_2D, wallTexture);
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLES, 18, 36);
