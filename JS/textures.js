@@ -24,6 +24,12 @@ function initTextures()
 	wallTexture.image.onload = function() {handleTextureLoaded(wallTexture);};
 	wallTexture.image.src = "./teksture/wall3.png";
 	
+	//sky
+	skyTexture = gl.createTexture();
+	skyTexture.image = new Image();
+	skyTexture.image.onload = function() {handleTextureLoaded(skyTexture);};
+	skyTexture.image.src = "./teksture/stars1.png";
+	
 }
 
 function handleTextureLoaded(texture)

@@ -79,4 +79,9 @@ function drawScene()
 	gl.bindTexture(gl.TEXTURE_2D, floorTexture);
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLES, 75, 12);
+	
+	//Izrisi nebo
+	gl.bindTexture(gl.TEXTURE_2D, skyTexture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 87, 42);
 }

@@ -24,6 +24,7 @@ var grassTexture;
 var floorTexture;
 var brickTexture;
 var wallTexture;
+var skyTexture;
 
 // Variable that stores  loading state of textures.
 var texturesLoaded = false;
