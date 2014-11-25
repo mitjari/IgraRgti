@@ -10,11 +10,14 @@ var cameraHeigth= 0;
 // Buffers
 var worldVertexPositionBuffer = null;
 var worldVertexTextureCoordBuffer = null;
+var worldVertexNormalBuffer= null;
 
 // Matrike
 var mvMatrixStack = [];
 var mvMatrix = mat4.create();
 var pMatrix = mat4.create();
+
+var lightMatrix = mat4.create();
 
 // Teksture
 var grassTexture;

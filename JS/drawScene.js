@@ -17,8 +17,7 @@ function drawScene()
 	mat4.rotate(mvMatrix, degToRad(-pitch), [1, 0, 0]);
 	mat4.rotate(mvMatrix, degToRad(-yaw), [0, 1, 0]);
 	mat4.translate(mvMatrix, [-xPosition, -yPosition, -zPosition]);
-	
-	
+
 	// Aktiviraj teksture
 	gl.activeTexture(gl.TEXTURE0);
 	gl.uniform1i(shaderProgram.samplerUniform, 0);
@@ -26,11 +25,35 @@ function drawScene()
 	//Nastavi teksturne koordinate
 	gl.bindBuffer(gl.ARRAY_BUFFER, worldVertexTextureCoordBuffer);
 	gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, worldVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+	
+	// Set the normals attribute for vertices.
+  	gl.bindBuffer(gl.ARRAY_BUFFER,worldVertexNormalBuffer);
+  	gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, worldVertexNormalBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
 	//Nastavi medpomilnike
 	gl.bindBuffer(gl.ARRAY_BUFFER, worldVertexPositionBuffer);
 	gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, worldVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+	
+	//Parametri osvetlitve
+	gl.uniform3f( shaderProgram.ambientColorUniform, 0.27, 0.27, 0.3);
+	var lightingDirection = [ 1, -1, 1];
+    var adjustedLD = vec3.create();
+    vec3.normalize(lightingDirection, adjustedLD);
+    vec3.scale(adjustedLD, -1);
+    //gl.uniform3fv(shaderProgram.lightingDirectionUniform, adjustedLD);
+    //gl.uniform3f( shaderProgram.directionalColorUniform, 1, 0, 0);
 
+	var lucX= 0.5;
+	var lucY= 1.5;
+	var lucZ= 2;
+
+	mat4.identity(lightMatrix);
+	mat4.rotate(lightMatrix, degToRad(-pitch), [1, 0, 0]);
+	mat4.rotate(lightMatrix, degToRad(-yaw), [0, 1, 0]);
+	mat4.translate(lightMatrix, [-xPosition + lucX, -yPosition + lucY, -zPosition + lucZ]);
+	
+    gl.uniform3f( shaderProgram.pointLightingLocationUniform, lightMatrix[12] , lightMatrix[13] , lightMatrix[14] );
+    gl.uniform3f( shaderProgram.pointLightingColorUniform, 0.75, 0.7 ,0.65 );
 
 	// Izrisi tla spodaj
 	gl.bindTexture(gl.TEXTURE_2D, grassTexture);

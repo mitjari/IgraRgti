@@ -14,42 +14,73 @@
 		<script src="./JS/textures.js" type="text/javascript"></script>
 		<script src="./JS/shaders.js" type="text/javascript"></script>
 		
+		
+		
+		
+		
 		<!-- Fragment shader program -->
-	    <script id="shader-fs" type="x-shader/x-fragment">
-			precision mediump float;
+		<script id="per-fragment-lighting-fs" type="x-shader/x-fragment">
+		    precision mediump float;
 
-	    	// uniform attribute for setting texture coordinates
-			varying vec2 vTextureCoord;
+		    varying vec2 vTextureCoord;
+		    varying vec3 vTransformedNormal;
+		    varying vec4 vPosition;
 
-			// uniform attribute for setting 2D sampler
-			uniform sampler2D uSampler;
+		    uniform vec3 uAmbientColor;	// ambient color uniform
 
-			void main(void) {
-		    	// sample the fragment color from texture
-			    gl_FragColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
-			}
-	    </script>
+		    uniform vec3 uPointLightingLocation;	// light direction uniform
+		    uniform vec3 uPointLightingColor;		// light color
 
-	    <!-- Vertex shader program -->	    
-	    <script id="shader-vs" type="x-shader/x-vertex">
-    		// atributes for setting vertex position and texture coordinates
+		    uniform sampler2D uSampler;
+
+
+		    void main(void) {
+		        vec3 lightWeighting;
+		        
+		        vec3 lightDirection = normalize(uPointLightingLocation - vPosition.xyz);
+		        float directionalLightWeighting = max(dot(normalize(vTransformedNormal), lightDirection), 0.0);
+		        lightWeighting = uAmbientColor + uPointLightingColor * directionalLightWeighting;
+
+		        vec4 fragmentColor;
+		        fragmentColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+		        gl_FragColor = vec4(fragmentColor.rgb * lightWeighting, fragmentColor.a);
+		    }
+		</script>
+
+	    <!-- Vertex shader program -->
+		<script id="per-fragment-lighting-vs" type="x-shader/x-vertex">
+			
 		    attribute vec3 aVertexPosition;
+		    attribute vec3 aVertexNormal;
 		    attribute vec2 aTextureCoord;
 
 		    uniform mat4 uMVMatrix;	// model-view matrix
 		    uniform mat4 uPMatrix;	// projection matrix
+		    uniform mat3 uNMatrix;	// normal matrix
 
-			// variable for passing texture coordinates
-			// from vertex shader to fragment shader
 		    varying vec2 vTextureCoord;
+		    varying vec3 vTransformedNormal;
+		    varying vec4 vPosition;
+
 
 		    void main(void) {
-		    	// calculate the vertex position
-		        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+		        vPosition = uMVMatrix * vec4(aVertexPosition, 1.0);
+		        gl_Position = uPMatrix * vPosition;
 		        vTextureCoord = aTextureCoord;
+		        vTransformedNormal = uNMatrix * aVertexNormal;
 		    }
 		</script>
+		
 	</head>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
