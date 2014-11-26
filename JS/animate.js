@@ -25,12 +25,12 @@ function animate()
 
 			joggingAngle += elapsed * 0.75;	//Nastavitev hoje
 			
-			if(xPosition>1.5 && xPosition<2 && zPosition<10 && zPosition>7.5){
+			if(xPosition>1.5 && xPosition<1.8 && zPosition<10 && zPosition>7.5){
 				cameraHeigth=(Math.abs(zPosition-10)/2.5)+0.4;
 				yPosition = Math.sin(degToRad(joggingAngle)) / 20 + cameraHeigth;
 			}
 			
-			if((xPosition<1.9 && zPosition>10.1) || zPosition<6.9 || (xPosition<1.5 && zPosition>7.0 && zPosition<10)){
+			if((xPosition<1.8 && zPosition>10.1) || zPosition<6.8 || (xPosition<1.3 && zPosition>7.0 && zPosition<10)){
 				if(cameraHeigth>0.4){
 					cameraHeigth -= gravity;
 					yPosition -= gravity;
@@ -41,7 +41,7 @@ function animate()
 				yPosition = Math.sin(degToRad(joggingAngle)) / 20 + cameraHeigth;
 			}
 			
-			if (xPosition<0.1 || zPosition<0.1 || zPosition>11.9 || xPosition>6.9 || (xPosition>1.4 && zPosition>6.9 && zPosition<7.1 && cameraHeigth<1.3) || (xPosition>1.4 && xPosition<1.6 && zPosition>6.9 && zPosition<10.1 && cameraHeigth==0.4) || (xPosition>1.9 && xPosition<2.1 && zPosition>7.5 && cameraHeigth<1.3)){
+			if (xPosition<0.2 || zPosition<0.2 || zPosition>11.8 || xPosition>6.8 || (xPosition>1.3 && zPosition>6.8 && zPosition<7.1 && cameraHeigth<1.3) || (xPosition>1.3 && xPosition<1.6 && zPosition>6.9 && zPosition<10.1 && cameraHeigth==0.4) || (xPosition>1.8 && xPosition<2.1 && zPosition>7.5 && cameraHeigth<1.3)){
 				xPosition=xPosPrevious;
 				zPosition=zPosPrevious;
 				yPosition=cameraHeigth;
@@ -50,7 +50,7 @@ function animate()
 
 		}else if(speed==0 || strafingSpeed==0){
 			if (cameraHeigth > 0.4){
-				if((xPosition<1.9 && zPosition>10.1) || zPosition<6.9 || (xPosition<1.5 && zPosition>7.0 && zPosition<10)){
+				if((xPosition<1.9 && zPosition>10.1) || zPosition<6.8 || (xPosition<1.3 && zPosition>7.0 && zPosition<10)){
 			
 					cameraHeigth -= gravity;
 					yPosition -= gravity;
