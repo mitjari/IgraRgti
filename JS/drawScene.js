@@ -125,12 +125,20 @@ function drawScene()
 	drawTree([6.7, 1.3, 8.7], 0, [0, 0, 0], [0.015, 0.006, 0.015]);
 	drawTree([6.7, 1.3, 9.7], 30, [0, 1, 0], [0.015, 0.008, 0.01]);
 	
+	//Izrisi naboje najprej od lastne potem od turrenta
 	for(var st=0; st<bullets.length; st++)
 	{
-		drawBullet([ bullets[st][0], bullets[st][3], bullets[st][1] ], 0, [0, 0, 0], [0.07, 0.07, 0.07]);
+		drawBullet([ bullets[st][0], bullets[st][3], bullets[st][1] ], 0, [0, 0, 0], [0.07, 0.07, 0.07], bulletTexture);
+	}
+	for(var st=0; st<turretBullets.length; st++)
+	{
+		drawBullet([ turretBullets[st][0], turretBullets[st][3], turretBullets[st][1] ], 0, [0, 0, 0], [0.07, 0.07, 0.07], lightTexture);
 	}
 	
-	drawTurret([1, -0.01, 1], 0, [0, 0, 0], [0.04, 0.04, 0.04]);
+	for(var st=0; st<turretLocations.length; st++)
+	{
+		drawTurret([ turretLocations[st][0], turretLocations[st][1], turretLocations[st][2] ], 0, [0, 0, 0], [0.04, 0.04, 0.04]);
+	}
 }
 
 function drawTurret(pos, deg, os, scal)
@@ -149,7 +157,7 @@ function drawTurret(pos, deg, os, scal)
 	mvPopMatrix();
 }
 
-function drawBullet(pos, deg, os, scal)
+function drawBullet(pos, deg, os, scal, texture)
 {
 	//Izrisi  naboj
 	mvPushMatrix();
@@ -158,7 +166,7 @@ function drawBullet(pos, deg, os, scal)
 	mat4.rotate(mvMatrix, degToRad(deg), os);
 	mat4.scale(mvMatrix, scal);
 	
-	gl.bindTexture(gl.TEXTURE_2D, bulletTexture);
+	gl.bindTexture(gl.TEXTURE_2D, texture);
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLES, 59880, 3309);	// 54366, 5514
 	
