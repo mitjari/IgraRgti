@@ -58,7 +58,7 @@ function initTextures()
 	lightTexture = gl.createTexture();
 	lightTexture.image = new Image();
 	lightTexture.image.onload = function() {handleTextureLoaded(lightTexture);};
-	lightTexture.image.src = "./teksture/light.png";
+	lightTexture.image.src = "./teksture/light2.png";
 	
 }
 
