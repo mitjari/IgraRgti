@@ -24,7 +24,7 @@ function handleLoadedWorld(data) {
       vertexCount += 1;
     }
   }
-  
+
 	//Vertexi
   worldVertexPositionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, worldVertexPositionBuffer);
