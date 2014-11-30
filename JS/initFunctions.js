@@ -48,7 +48,7 @@ var mouseEvent=null;
 // Lokacija in hitrost
 var pitch = 0;
 var pitchRate = 0;
-var yaw = 200;
+var yaw = 0;
 var yawRate = 0;
 var xPosition = 1;
 var yPosition = 0.4;
@@ -56,6 +56,12 @@ var zPosition = 1;
 var speed = 0;
 var strafingSpeed= 0;
 var gravity = 0.1;
+var shoot=false;
+var xBullet=0;
+var zBullet=0
+var bullets=[];
+var collisionCount=0;
+var bulletSpeed=0.05;
 
 var joggingAngle = 0;
 
@@ -155,6 +161,7 @@ function start()
 		//Tipkovnica
 		document.onkeydown = handleKeyDown;
 		document.onkeyup = handleKeyUp;
+		document.onclick = handleClick;
 
 		// Zanka
 		setInterval(function() {

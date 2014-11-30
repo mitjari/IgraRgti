@@ -115,8 +115,6 @@ function loadWorld()
 			}
 		}
 	}
-	
-	//alert("Vert: " + vertexCount + "VertArr" + vertexPositions.length + "Tex:" + vertexTextureCoords.length + "Normals:" + vertexNormals.length);
 
 	//Povezi medpomnilnike
 	//Vertexi

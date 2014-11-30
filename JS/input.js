@@ -9,7 +9,11 @@ function handleKeyUp(event)
 	currentlyPressedKeys[event.keyCode] = false;
 }
 
-
+function handleClick(event){
+	if(event.button==0){
+		shoot=true;
+	}
+}
 function handleKeys()
 {
 	//Gor dol
