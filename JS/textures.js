@@ -42,6 +42,24 @@ function initTextures()
 	boxTexture2.image.onload = function() {handleTextureLoaded(boxTexture2);};
 	boxTexture2.image.src = "./teksture/box2.png";
 	
+	//LionBase
+	lionBaseTexture = gl.createTexture();
+	lionBaseTexture.image = new Image();
+	lionBaseTexture.image.onload = function() {handleTextureLoaded(lionBaseTexture);};
+	lionBaseTexture.image.src = "./teksture/lion/base.png";
+	
+	//LionBase
+	lionTexture = gl.createTexture();
+	lionTexture.image = new Image();
+	lionTexture.image.onload = function() {handleTextureLoaded(lionTexture);};
+	lionTexture.image.src = "./teksture/lion/lion.jpg";
+	
+	//Light
+	lightTexture = gl.createTexture();
+	lightTexture.image = new Image();
+	lightTexture.image.onload = function() {handleTextureLoaded(lightTexture);};
+	lightTexture.image.src = "./teksture/light.png";
+	
 }
 
 function handleTextureLoaded(texture)

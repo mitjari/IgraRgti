@@ -43,9 +43,9 @@ function drawScene()
     //gl.uniform3fv(shaderProgram.lightingDirectionUniform, adjustedLD);
     //gl.uniform3f( shaderProgram.directionalColorUniform, 1, 0, 0);
 
-	var lucX= 0.5;
+	var lucX= 1;
 	var lucY= 1.5;
-	var lucZ= 2;
+	var lucZ= 3;
 
 	mat4.identity(lightMatrix);
 	mat4.rotate(lightMatrix, degToRad(-pitch), [1, 0, 0]);
@@ -106,6 +106,92 @@ function drawScene()
 	drawBox([5.5, 0, 1.5], 0, [0, 0, 0], [2.5, 2.5, 2.5], boxTexture1);
 	drawBox([5.5, 0.5, 1.2], 30, [0, 1, 0], [2.5, 2.5, 2.5], boxTexture2);
 	drawBox([5.5, 0.3, 2], 40, [1, 0, 0], [2.5, 2.5, 2.5], boxTexture2);
+	
+	//Izrisi drevesa
+	drawTree([2.5, 0, 6], 0, [0, 0, 0], [0.01, 0.02, 0.01]);
+	drawTree([5, 0, 1.5], 5, [1, 1, 0], [0.015, 0.02, 0.015]);
+	drawTree([6.5, 0, 6.5], 45, [0, 1, 0], [0.02, 0.015, 0.02]);
+	
+	//Izrisi kip leva
+	drawStatue([4, 0.95, 9], 270, [0, 1, 0], [0.15, 0.15, 0.15]);
+	
+	//Izrisi luc
+	drawLight([1, -0.01, 3], 0, [0, 0, 0], [0.3, 0.3, 0.3]);
+	
+	//Izrisi cvetlisno korito
+	drawBox([6.5, 1, 7.5], 0, [0, 0, 0], [2.5, 1.6, 12], wallTexture);
+	
+	drawTree([6.7, 1.3, 7.7], 10, [0, 1, 0], [0.01, 0.01, 0.015]);
+	drawTree([6.7, 1.3, 8.7], 0, [0, 0, 0], [0.015, 0.006, 0.015]);
+	drawTree([6.7, 1.3, 9.7], 30, [0, 1, 0], [0.015, 0.008, 0.01]);
+}
+
+function drawLight(pos, deg, os, scal)
+{
+	//Izrisi lluc
+	mvPushMatrix();
+	
+	mat4.translate(mvMatrix, pos);
+	mat4.rotate(mvMatrix, degToRad(deg), os);
+	mat4.scale(mvMatrix, scal);
+	
+	gl.bindTexture(gl.TEXTURE_2D, brickTexture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 54366, 228);	// 54366, 5514
+	
+	gl.bindTexture(gl.TEXTURE_2D, lightTexture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 54594, 60);	// 54366, 5514
+	
+	gl.bindTexture(gl.TEXTURE_2D, lionBaseTexture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 54654, 5226);	// 54366, 5514
+	
+	mvPopMatrix();
+}
+
+function drawStatue(pos, deg, os, scal)
+{
+	//Izrisi leva
+	mvPushMatrix();
+	
+	mat4.translate(mvMatrix, pos);
+	mat4.rotate(mvMatrix, degToRad(deg), os);
+	mat4.scale(mvMatrix, scal);
+	
+	gl.bindTexture(gl.TEXTURE_2D, lionTexture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 23508, 30729);	//30858
+
+	gl.bindTexture(gl.TEXTURE_2D, lionBaseTexture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 54237, 129);	//30858
+	
+	mvPopMatrix();
+}
+
+function drawTree(pos, deg, os, scal)
+{
+	//Izrisi drevo
+	mvPushMatrix();
+	
+	mat4.translate(mvMatrix, pos);
+	mat4.rotate(mvMatrix, degToRad(deg), os);
+	mat4.scale(mvMatrix, scal);
+	
+	gl.bindTexture(gl.TEXTURE_2D, boxTexture1);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 165, 7602);
+	
+	gl.bindTexture(gl.TEXTURE_2D, grassTexture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 7767, 15711);
+	
+	gl.bindTexture(gl.TEXTURE_2D, boxTexture2);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 23478, 30);
+	
+	mvPopMatrix();
 }
 
 function drawBox(pos, deg, os, scal, texture)
