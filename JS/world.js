@@ -34,7 +34,7 @@ function loadWorld()
 	//Najprej pridobi iz ajaxa
 	//Nalozi objekte iz datoteke .obj
 	
-	var objekti= ["tree-04.obj", "lion-statue.obj", "street-light.obj", "ball.obj"];
+	var objekti= ["tree-04.obj", "lion-statue.obj", "street-light.obj", "ball.obj", "turret.obj"];
 	
 	for( k=0; k<objekti.length; k++)
 	{

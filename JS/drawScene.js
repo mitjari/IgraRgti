@@ -129,6 +129,24 @@ function drawScene()
 	{
 		drawBullet([ bullets[st][0], bullets[st][3], bullets[st][1] ], 0, [0, 0, 0], [0.07, 0.07, 0.07]);
 	}
+	
+	drawTurret([1, -0.01, 1], 0, [0, 0, 0], [0.04, 0.04, 0.04]);
+}
+
+function drawTurret(pos, deg, os, scal)
+{
+	//Izrisi  turret
+	mvPushMatrix();
+	
+	mat4.translate(mvMatrix, pos);
+	mat4.rotate(mvMatrix, degToRad(deg), os);
+	mat4.scale(mvMatrix, scal);
+	
+	gl.bindTexture(gl.TEXTURE_2D, bulletTexture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 63189, 177807);
+	
+	mvPopMatrix();
 }
 
 function drawBullet(pos, deg, os, scal)
