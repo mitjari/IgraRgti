@@ -124,6 +124,27 @@ function drawScene()
 	drawTree([6.7, 1.3, 7.7], 10, [0, 1, 0], [0.01, 0.01, 0.015]);
 	drawTree([6.7, 1.3, 8.7], 0, [0, 0, 0], [0.015, 0.006, 0.015]);
 	drawTree([6.7, 1.3, 9.7], 30, [0, 1, 0], [0.015, 0.008, 0.01]);
+	
+	for(var st=0; st<bullets.length; st++)
+	{
+		drawBullet([ bullets[st][0], bullets[st][3], bullets[st][1] ], 0, [0, 0, 0], [0.07, 0.07, 0.07]);
+	}
+}
+
+function drawBullet(pos, deg, os, scal)
+{
+	//Izrisi  naboj
+	mvPushMatrix();
+	
+	mat4.translate(mvMatrix, pos);
+	mat4.rotate(mvMatrix, degToRad(deg), os);
+	mat4.scale(mvMatrix, scal);
+	
+	gl.bindTexture(gl.TEXTURE_2D, bulletTexture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 59880, 3309);	// 54366, 5514
+	
+	mvPopMatrix();
 }
 
 function drawLight(pos, deg, os, scal)

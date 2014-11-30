@@ -32,6 +32,7 @@ var lionTexture;
 var lionBaseTexture;
 
 var lightTexture;
+var bulletTexture;
 
 // Variable that stores  loading state of textures.
 var texturesLoaded = false;

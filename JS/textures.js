@@ -60,6 +60,11 @@ function initTextures()
 	lightTexture.image.onload = function() {handleTextureLoaded(lightTexture);};
 	lightTexture.image.src = "./teksture/light2.png";
 	
+	//Bullet
+	bulletTexture = gl.createTexture();
+	bulletTexture.image = new Image();
+	bulletTexture.image.onload = function() {handleTextureLoaded(bulletTexture);};
+	bulletTexture.image.src = "./teksture/glow1.png";
 }
 
 function handleTextureLoaded(texture)
