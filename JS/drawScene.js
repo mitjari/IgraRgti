@@ -84,4 +84,41 @@ function drawScene()
 	gl.bindTexture(gl.TEXTURE_2D, skyTexture);
 	setMatrixUniforms();
 	gl.drawArrays(gl.TRIANGLES, 87, 42);
+	
+	//Izrisi skatlo
+	// drawBox([x, y, z], rotacija v stopinjah, os vrtenja[x, y, z], skalacija, textura)
+	
+	//Skatle pri rampi
+	drawBox([0.2, 0, 10.6], 0, [0, 0, 0], [2.5, 2.5, 2.5], boxTexture1);
+	drawBox([0.8, 0, 10.6], 0, [0, 0, 0], [2.5, 2.5, 2.5], boxTexture1);
+	drawBox([0.6, 0.5, 10.6], 30, [0, 1, 0], [2.5, 2.5, 2.5], boxTexture2);
+	
+	//Zgornje nadstropje
+	drawBox([1.8, 1, 11], 20, [0, 1, 0], [2.5, 2.5, 2.5], boxTexture2);
+	//kot
+	drawBox([6.5, 1, 11.5], 0, [0, 0, 0], [2, 2, 2], boxTexture2);
+	drawBox([6.1, 1, 11.5], 0, [0, 0, 0], [2, 2, 2], boxTexture2);
+	drawBox([6.6, 1.4, 11.5], 0, [0, 0, 0], [2, 2, 2], boxTexture2);
+	drawBox([6.6, 1, 11.1], 10, [0, 1, 0], [2, 2, 2], boxTexture1);
+	
+	//Spodaj
+	drawBox([5.5, 0, 1], 45, [0, 1, 0], [2.5, 2.5, 2.5], boxTexture2);
+	drawBox([5.5, 0, 1.5], 0, [0, 0, 0], [2.5, 2.5, 2.5], boxTexture1);
+	drawBox([5.5, 0.5, 1.2], 30, [0, 1, 0], [2.5, 2.5, 2.5], boxTexture2);
+	drawBox([5.5, 0.3, 2], 40, [1, 0, 0], [2.5, 2.5, 2.5], boxTexture2);
+}
+
+function drawBox(pos, deg, os, scal, texture)
+{
+	mvPushMatrix();
+	
+	mat4.translate(mvMatrix, pos);
+	mat4.rotate(mvMatrix, degToRad(deg), os);
+	mat4.scale(mvMatrix, scal);
+	
+	gl.bindTexture(gl.TEXTURE_2D, texture);
+	setMatrixUniforms();
+	gl.drawArrays(gl.TRIANGLES, 129, 36);
+	
+	mvPopMatrix();
 }

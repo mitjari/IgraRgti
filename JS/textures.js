@@ -30,6 +30,18 @@ function initTextures()
 	skyTexture.image.onload = function() {handleTextureLoaded(skyTexture);};
 	skyTexture.image.src = "./teksture/stars1.png";
 	
+	//box1
+	boxTexture1 = gl.createTexture();
+	boxTexture1.image = new Image();
+	boxTexture1.image.onload = function() {handleTextureLoaded(boxTexture1);};
+	boxTexture1.image.src = "./teksture/box1.png";
+	
+	//box2
+	boxTexture2 = gl.createTexture();
+	boxTexture2.image = new Image();
+	boxTexture2.image.onload = function() {handleTextureLoaded(boxTexture2);};
+	boxTexture2.image.src = "./teksture/box2.png";
+	
 }
 
 function handleTextureLoaded(texture)

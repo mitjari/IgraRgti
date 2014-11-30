@@ -12,6 +12,7 @@ var worldVertexPositionBuffer = null;
 var worldVertexTextureCoordBuffer = null;
 var worldVertexNormalBuffer= null;
 
+
 // Matrike
 var mvMatrixStack = [];
 var mvMatrix = mat4.create();
@@ -25,6 +26,8 @@ var floorTexture;
 var brickTexture;
 var wallTexture;
 var skyTexture;
+var boxTexture1;
+var boxTexture2;
 
 // Variable that stores  loading state of textures.
 var texturesLoaded = false;
