@@ -1,6 +1,3 @@
-
-NUMPOLLIES 36
-
 //XYZUV
 //tla veliki kvadrat
 7	0	0		0	0		0	1	0
@@ -28,7 +25,6 @@ NUMPOLLIES 36
 7	1	12		0	14		0	1	0
 2	1	7		14	0		0	1	0
 2	1	12		14	14		0	1	0
-
 
 //Stene glavna soba
 //desno
@@ -133,7 +129,6 @@ NUMPOLLIES 36
 1.5	1	7		1	0		0	1	0
 1.5	1	7.5		1	1		0	1	0
 
-
 //Nebo
 //Glavna ploskev
 32	25	-25		0	0		0	1	0
@@ -198,11 +193,8 @@ NUMPOLLIES 36
 -35	5	37		1	0		0	1	0
 -25	5	47		0	1		0	1	0
 
-
 //Objekti v igri
-//Skatla
-
-//sprednja ploskev
+//Skatla - sprednja ploskev
 0.2	0	0		0	0		0	0	-1
 0	0	0		0	1		0	0	-1
 0.2	0.2	0		1	0		0	0	-1
@@ -220,7 +212,7 @@ NUMPOLLIES 36
 0	0	0.2		0	1		-1	0	0
 0	0.2	0.2		1	1		-1	0	0
 
-//	Zadnja ploskev
+//Zadnja ploskev
 0	0	0.2		0	0		0	0	1
 0.2	0	0.2		0	1		0	0	1
 0	0.2	0.2		1	0		0	0	1

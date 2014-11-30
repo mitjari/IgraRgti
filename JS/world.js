@@ -30,7 +30,6 @@ function loadWorld()
 			vertexCount += 1;
 		}
 	}
-
 	//Sedaj pa se parsaj obj datoteke
 	//Najprej pridobi iz ajaxa
 	//Nalozi objekte iz datoteke .obj

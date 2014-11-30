@@ -119,7 +119,7 @@ function animate()
 				//console.log(z);
 				if(collision(x,z,bullets[i][3])==true){
 					collisionCount+=1;
-					bullets.pop(i);
+					bullets.splice(i, 1);
 					//console.log("collisions");
 					//console.log(collisionCount);
 				}else{
