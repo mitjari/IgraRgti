@@ -94,6 +94,32 @@ function animate()
 
 		}
 		
+		turretDelay+=elapsed;
+		if(turretDelay>2000){
+			turretDelay=0;
+			for(i=0; i<turretLocation; i++){
+				var naklon=Math.abs(xPosition-xTurretPos)/Math.abs(zPosition-zTurretPos);
+				
+				var cos=Math.cos(degToRad(naklon));
+				var sin=Math.sin(degToRad(naklon));
+				if(cos>0){
+					cos= cos*(-1);
+				}else if(cos<0){
+					cos=Math.abs(cos);
+				}
+				if(sin>0){
+					sin=sin*(-1);
+				}else if(sin<0){
+					sin=Math.abs(sin);
+				}
+				
+				var x = xTurretPos + bulletSpeed * sin;
+				var z = zTurretPos + bulletSpeed * cos;
+				
+				turretBullets.push([x,z,naklon,0.3]);
+			}
+			
+		}
 		if(bullets.length > 0){
 			for(i=0; i<bullets.length; i++){
 				x=bullets[i][0];
