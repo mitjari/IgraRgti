@@ -51,7 +51,6 @@ function animate()
 				zPosition=zPosPrevious;
 				yPosition=cameraHeigth;
 			}
-			console.log(collision(xPosition,zPosition,cameraHeigth));
 		}else if(speed==0 || strafingSpeed==0){
 			if (cameraHeigth > 0.4){
 				if((xPosition<1.9 && zPosition>10.1) || zPosition<6.8 || (xPosition<1.3 && zPosition>7.0 && zPosition<10)){
@@ -89,7 +88,7 @@ function animate()
 			xBullet = xPosition + bulletSpeed * sin;
 			zBullet = zPosition + bulletSpeed * cos;
 			
-			bullets.push([xBullet,zBullet,yaw,cameraHeigth]);
+			bullets.push([xBullet,zBullet,yaw,cameraHeigth-0.1]);
 			console.log(bullets);
 			console.log(bullets.length);
 
@@ -116,15 +115,15 @@ function animate()
 
 				x = x + bulletSpeed * sin;
 				z = z + bulletSpeed * cos;
-				console.log(x);
-				console.log(z);
+				//console.log(x);
+				//console.log(z);
 				if(collision(x,z,bullets[i][3])==true){
 					collisionCount+=1;
 					bullets.pop(i);
-					console.log("collisions");
-					console.log(collisionCount);
+					//console.log("collisions");
+					//console.log(collisionCount);
 				}else{
-					bullets[i]=[x,z,direction];
+					bullets[i]=[x,z,direction,bullets[i][3]];
 				}
 				
 			}
