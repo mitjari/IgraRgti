@@ -94,10 +94,21 @@ function animate()
 
 		}
 		
+		if(turretLocations.length == 0){
+			turretSpawnDelay+=elapsed;
+			if(turretSpawnDelay>3000){
+				turretSpawnDelay=0;
+				var location = Math.floor(Math.random() * (4 - 0 + 1));
+				console.log(location);		
+				turretLocations.push(possibleLocation[location]);
+			}
+		}
 		turretDelay+=elapsed;
 		if(turretDelay>2000){
 			turretDelay=0;
-			for(i=0; i<turretLocation; i++){
+			for(i=0; i<turretLocations.length; i++){
+				var xTurretPos=turretLocations[i][0];
+				var zTurretPos=turretLocations[i][2];
 				var naklon=Math.abs(xPosition-xTurretPos)/Math.abs(zPosition-zTurretPos);
 				
 				var cos=Math.cos(degToRad(naklon));
@@ -116,7 +127,7 @@ function animate()
 				var x = xTurretPos + bulletSpeed * sin;
 				var z = zTurretPos + bulletSpeed * cos;
 				
-				turretBullets.push([x,z,naklon,0.3]);
+				turretBullets.push([x,z,naklon(turretLocations[i][2]+0.3)]);
 			}
 			
 		}

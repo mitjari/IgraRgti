@@ -62,10 +62,12 @@ var xBullet=0;
 var zBullet=0;
 var bullets=[];
 var collisionCount=0;
-var bulletSpeed=0.05;
+var bulletSpeed=0.1;
 var turretDelay=0;
 var turretBullets=[];
 var turretLocations=[];
+var turretSpawnDelay=0;
+var possibleLocation=[[4.5,0,6.5,false],[6.5,0,4.5,false],[4.5,1,11.5,false],[6,1,8,false]];
 
 var joggingAngle = 0;
 
