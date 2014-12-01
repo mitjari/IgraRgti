@@ -111,8 +111,8 @@ function animate()
 				var zTurretPos=turretLocations[i][2];
 				var naklon=Math.abs(xPosition-xTurretPos)/Math.abs(zPosition-zTurretPos);
 				
-				var cos=Math.cos(degToRad(naklon));
-				var sin=Math.sin(degToRad(naklon));
+				var cos=Math.cos(naklon);
+				var sin=Math.sin(naklon);
 				if(cos>0){
 					cos= cos*(-1);
 				}else if(cos<0){
@@ -127,10 +127,39 @@ function animate()
 				var x = xTurretPos + bulletSpeed * sin;
 				var z = zTurretPos + bulletSpeed * cos;
 				
-				turretBullets.push([x,z,naklon(turretLocations[i][2]+0.3)]);
+				turretBullets.push([x,z,naklon,(turretLocations[i][2]+0.3)]);
 			}
 			
 		}
+		
+		if(turretBullets.length > 0){
+			for(i=0; i<turretBullets.length; i++){
+				x=turretBullets[i][0];
+				z=turretBullets[i][1];
+				direction=turretBullets[i][2];
+				
+				var cos=Math.cos(direction);
+				var sin=Math.sin(direction);
+				if(cos>0){
+					cos= cos*(-1);
+				}else if(cos<0){
+					cos=Math.abs(cos);
+				}
+				if(sin>0){
+					sin=sin*(-1);
+				}else if(sin<0){
+					sin=Math.abs(sin);
+				}
+
+				x = x + bulletSpeed * sin;
+				z = z + bulletSpeed * cos;
+				//console.log(x);
+				//console.log(z);
+				turretBullets[i]=[x,z,direction,bullets[i][3]];
+				
+			}
+		}
+		
 		if(bullets.length > 0){
 			for(i=0; i<bullets.length; i++){
 				x=bullets[i][0];
