@@ -37,3 +37,28 @@ function collision(x,z,heigthCamera){
 	}
 	return(false);
 }
+
+function bulletTurret(x,z,heigthCamera){
+	
+	if(x<xPosition+0.2 && x>xPosition-0.2 && z<zPosition+0.2 && z>zPosition-0.2){
+		playerHealth=playerHealth-10;
+		return(true);
+	}
+	
+}
+
+function bulletPlayer(x,z,heigthCamera){
+
+	for(i=0; i<turretLocations.length; i++){
+		xTurret=turretLocations[i][0];
+		zTurret=turretLocations[i][2];
+		camera=turretLocations[i][5];
+		if(x<xTurret+0.2 && x>xTurret-0.2 && z<zTurret0.2 && z>zTurret-0.2 && heigthCamera<camera&& heigthCamera>camera-0.3){
+			turretLocations[i][4]=turretLocations[i][4]-20;
+			if(turretLocations[i][4]==0){
+				turretLocations.splice(i,1);
+			}
+		}
+	}
+	
+}
