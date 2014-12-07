@@ -42,6 +42,11 @@ function bulletTurret(x,z,heigthCamera){
 	
 	if(x<xPosition+0.2 && x>xPosition-0.2 && z<zPosition+0.2 && z>zPosition-0.2){
 		playerHealth=playerHealth-10;
+		if(playerHealth==0){
+			if(confirm('Your score: '+score)){
+				window.location.reload();  
+			}
+		}
 		return(true);
 	}
 	
@@ -57,6 +62,7 @@ function bulletPlayer(x,z,heigthCamera){
 			turretLocations[i][4]=turretLocations[i][4]-20;
 			if(turretLocations[i][4]==0){
 				turretLocations.splice(i,1);
+				score+=1;
 			}
 		}
 	}
