@@ -156,6 +156,7 @@ function animate()
 				//console.log(x);
 				//console.log(z);
 				if(collision(x,z,bullets[i][3])==true){
+					//collisionCount+=1;
 					turretBullets.splice(i, 1);
 					//console.log("collisions");
 					//console.log(collisionCount);
@@ -192,6 +193,7 @@ function animate()
 				//console.log(x);
 				//console.log(z);
 				if(collision(x,z,bullets[i][3])==true){
+					//collisionCount+=1;
 					bullets.splice(i, 1);
 					//console.log("collisions");
 					//console.log(collisionCount);
