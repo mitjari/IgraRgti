@@ -67,8 +67,7 @@ var turretDelay=0;
 var turretBullets=[];
 var turretLocations=[];
 var turretSpawnDelay=0;
-var playerHealth=100;
-var possibleLocation=[[4.5,0,6.5,false,100,0.4],[6.5,0,4.5,false,100,0.4],[4.5,1,11.5,false,100,1.4],[6,1,8,false,100,1.4]];
+var possibleLocation=[[4.5,0,6.5,false],[6.5,0,4.5,false],[4.5,1,11.5,false],[6,1,8,false]];
 
 var joggingAngle = 0;
 

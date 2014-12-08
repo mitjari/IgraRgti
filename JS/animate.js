@@ -127,7 +127,7 @@ function animate()
 				var x = xTurretPos + bulletSpeed * sin;
 				var z = zTurretPos + bulletSpeed * cos;
 				
-				turretBullets.push([x,z,naklon,(turretLocations[i][1]+0.3)]);
+				turretBullets.push([x,z,naklon,(turretLocations[i][2]+0.3)]);
 			}
 			
 		}
@@ -155,17 +155,8 @@ function animate()
 				z = z + bulletSpeed * cos;
 				//console.log(x);
 				//console.log(z);
-				if(collision(x,z,bullets[i][3])==true){
-					//collisionCount+=1;
-					turretBullets.splice(i, 1);
-					//console.log("collisions");
-					//console.log(collisionCount);
-				}else if(bulletTurret(x,z,bullets[i][3]==true)){
-					turretBulelts.splice(i,1);
-				}else{
-					turretBullets[i]=[x,z,direction,turretBullets[i][3]];
-				}
-
+				turretBullets[i]=[x,z,direction,bullets[i][3]];
+				
 			}
 		}
 		
@@ -193,12 +184,10 @@ function animate()
 				//console.log(x);
 				//console.log(z);
 				if(collision(x,z,bullets[i][3])==true){
-					//collisionCount+=1;
+					collisionCount+=1;
 					bullets.splice(i, 1);
 					//console.log("collisions");
 					//console.log(collisionCount);
-				}else if(bulletPlayer(x,z,bullets[i][3]==true)){
-					bulelts.splice(i,1);
 				}else{
 					bullets[i]=[x,z,direction,bullets[i][3]];
 				}
